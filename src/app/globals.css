@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+/* Natural Elite Light Theme (Silk & Soft) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcfcfd;
+  --foreground: #1c1c1e;
+  --card: #ffffff;
+  --card-foreground: #1c1c1e;
+  --border: #f0f0f2;
+  --primary: #27272a;
+  --primary-foreground: #ffffff;
+  --accent: #f4f4f7;
+  --accent-foreground: #27272a;
+  --muted: #8e8e93;
+  --muted-foreground: #aeaeb2;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Natural Elite Dark Theme (Deep & Nuanced) */
+.dark {
+  --background: #0e0e10;
+  --foreground: #e5e5e7;
+  --card: #161618;
+  --card-foreground: #e5e5e7;
+  --border: #242426;
+  --primary: #ffffff;
+  --primary-foreground: #0e0e10;
+  --accent: #1c1c1e;
+  --accent-foreground: #ffffff;
+  --muted: #636366;
+  --muted-foreground: #3a3a3c;
 }
 
+/* OS preference fallback */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not(.light) {
+    --background: #0e0e10;
+    --foreground: #e5e5e7;
+    --card: #161618;
+    --card-foreground: #e5e5e7;
+    --border: #242426;
+    --primary: #ffffff;
+    --primary-foreground: #0e0e10;
+    --accent: #1c1c1e;
+    --accent-foreground: #ffffff;
+    --muted: #636366;
+    --muted-foreground: #3a3a3c;
   }
 }
 
+* {
+  border-color: var(--border);
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* --- Natural Premium Components --- */
+
+.clean-card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.01), 0 10px 15px -3px rgba(0,0,0,0.02);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.clean-card:hover {
+  border-color: var(--muted-foreground);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 14px 28px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background: var(--accent);
+  color: var(--foreground);
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--card);
+  border-color: var(--muted);
+  transform: translateY(-1px);
+}
+
+.input-clean {
+  background: var(--accent);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  border-radius: 18px;
+  width: 100%;
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.input-clean:focus {
+  background: var(--card);
+  border-color: var(--muted);
+}
+
+/* --- Core Animations --- */
+
+.fade-in {
+  animation: naturalFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes naturalFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography Helpers (Softer & More Natural) */
+.heading-premium {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.subheading-premium {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
 }
