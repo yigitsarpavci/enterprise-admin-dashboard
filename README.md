@@ -1,8 +1,10 @@
-# Company Performance Admin Panel
+# Performo Enterprise Admin
 
 A modern, secure, and professional full-stack administrative tool designed for internal company management. Built with the latest Next.js features and a focus on clean architecture and security.
 
-## 🚀 Tech Stack
+---
+
+## Tech Stack
 
 - **Framework:** [Next.js 16 (App Router)](https://nextjs.org/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
@@ -11,7 +13,9 @@ A modern, secure, and professional full-stack administrative tool designed for i
 - **Authentication:** Custom JWT-based sessions with HTTP-only Cookies (using `jose`)
 - **Security:** Password hashing with `bcryptjs`, server-side role validation, and protected middleware.
 
-## ✨ Current Features
+---
+
+## Features
 
 - **Secure Authentication:** Name and password-based login system.
 - **Session Management:** Secure server-side sessions using HTTP-only cookies.
@@ -26,14 +30,18 @@ A modern, secure, and professional full-stack administrative tool designed for i
 - **Responsive Design:** Fully optimized for desktop, tablet, and mobile devices.
 - **Modern UI:** Clean, minimalist professional interface using a refined Zinc/Blue color palette.
 
-## 📅 Future Planned Features
+---
+
+## Future Planned Features
 
 - **Employee Management:** Extended profile details and document management.
 - **Performance Scoring:** Quarterly and annual performance tracking systems.
 - **Task Tracking:** Project and task assignment for team members.
-- **Analytics & Reports:** Detailed productivity reports and department-wise analytics.
+- **Analytics and Reports:** Detailed productivity reports and department-wise analytics.
 
-## 📂 Folder Structure
+---
+
+## Folder Structure
 
 ```text
 ├── prisma/
@@ -53,12 +61,14 @@ A modern, secure, and professional full-stack administrative tool designed for i
 └── package.json         # Project dependencies and scripts
 ```
 
-## 🛠 Installation & Setup
+---
+
+## Installation and Setup
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
-cd company-admin-panel
+git clone https://github.com/yigitsarpavci/Performo-Enterprise-Admin.git
+cd Performo-Enterprise-Admin
 ```
 
 ### 2. Install dependencies
@@ -90,7 +100,9 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🔑 Default Admin Credentials
+---
+
+## Default Admin Credentials
 
 Use these credentials to access the management features after seeding:
 
@@ -99,4 +111,4 @@ Use these credentials to access the management features after seeding:
 
 ---
 
-Built with ❤️ for professional company management.
+Built for professional company management by Yigit Sarp Avci.
