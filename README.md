@@ -32,6 +32,18 @@ A modern, secure, and professional full-stack administrative tool designed for i
 
 ---
 
+
+## Business Value & Target Audience
+
+- **Target Audience:** HR and Operations departments of mid-sized companies (50-500 employees).
+- **Value Proposition:** Replaces chaotic Excel spreadsheets and fragmented HR tools with a unified, secure, Role-Based Access Control (RBAC) console that automates employee onboarding, offboarding, and performance tracking.
+
+## Monetization & Go-to-Market Strategy
+
+- **Pricing Model:** Pay-per-seat subscription ($4/month per active employee).
+- **Enterprise Plan:** Custom pricing for Active Directory (SSO) integration and on-premise deployments.
+- **Go-to-Market:** Cold outreach to HR managers offering a free "employee performance audit template," followed by a 14-day free trial of the Performo dashboard.
+
 ## Future Planned Features
 
 - **Employee Management:** Extended profile details and document management.
@@ -101,6 +113,15 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ---
+
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | ✅ | Connection string (SQLite for dev, PostgreSQL for prod) |
+| `SESSION_SECRET` | ✅ | Cryptographic secret for `jose` JWT cookies |
+| `NEXT_PUBLIC_APP_URL` | Optional | Base URL for internal API routing |
 
 ## Default Admin Credentials
 
