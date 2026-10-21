@@ -8,7 +8,8 @@ A modern, secure, and professional full-stack administrative tool designed for i
 
 - **Framework:** [Next.js 16 (App Router)](https://nextjs.org/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Styling & Motion:** [Tailwind CSS](https://tailwindcss.com/), Framer Motion (Transitions & Micro-Animations)
+- **Data Visualization:** [Recharts](https://recharts.org/) (Real-Time Metrics)
 - **Database:** [SQLite](https://www.sqlite.org/) (via [Prisma ORM](https://www.prisma.io/))
 - **Authentication:** Custom JWT-based sessions with HTTP-only Cookies (using `jose`)
 - **Security:** Password hashing with `bcryptjs`, server-side role validation, and protected middleware.
