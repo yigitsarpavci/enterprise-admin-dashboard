@@ -80,8 +80,8 @@ A modern, secure, and professional full-stack administrative tool designed for i
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yigitsarpavci/Performo-Enterprise-Admin.git
-cd Performo-Enterprise-Admin
+git clone https://github.com/yigitsarpavci/enterprise-admin-dashboard.git
+cd enterprise-admin-dashboard
 ```
 
 ### 2. Install dependencies
