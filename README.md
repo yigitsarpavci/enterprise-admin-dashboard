@@ -1,4 +1,4 @@
-# Performo Enterprise Admin
+# Enterprise Admin Dashboard (Performo)
 
 A modern, secure, and professional full-stack administrative tool designed for internal company management. Built with the latest Next.js features and a focus on clean architecture and security.
 
