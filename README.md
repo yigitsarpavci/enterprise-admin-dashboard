@@ -16,41 +16,31 @@ A modern, secure, and professional full-stack administrative tool designed for i
 
 ---
 
-## Features
+## Core Features
 
-- **Secure Authentication:** Name and password-based login system.
-- **Session Management:** Secure server-side sessions using HTTP-only cookies.
-- **Admin Dashboard:**
-    - Real-time statistics (Total Users, Profiles Created).
-    - Comprehensive User Directory.
-    - **User Onboarding:** Create new company users with automatic profile generation.
-    - **User Management:** Secure deletion of accounts with self-deletion protection.
+- **Employee Task Delegation & Tracking:** Assign strategic tasks to employees across departments, set deadlines, and monitor real-time execution across TODO, IN_PROGRESS, and DONE states.
+- **Daily Work Logs & Time Tracking:** Minute-by-minute work logging attached to specific tasks, enabling accurate time allocation tracking and employee self-reporting.
+- **Daily Routine Compliance Checks:** Configurable daily routine checklists ensuring standard operating procedures and operational compliance.
+- **Productivity & Department Comparison:** Interactive Recharts analytics visualizing team productivity, department time distributions, and cross-team operational performance.
+- **Employee Directory & Onboarding:** Manage user profiles, assign corporate roles/departments, and oversee employee lifecycles with self-deletion safeguards.
 - **Role-Based Access Control (RBAC):**
-    - `ADMIN`: Full access to user management and system settings.
-    - `USER`: Access to personal dashboard and performance metrics.
-- **Responsive Design:** Fully optimized for desktop, tablet, and mobile devices.
-- **Modern UI:** Clean, minimalist professional interface using a refined Zinc/Blue color palette.
+    - `ADMIN`: Full management command center across tasks, employees, daily logs, and system analytics.
+    - `USER`: Personal dashboard for managing assigned tasks, logging work hours, and submitting daily routine reports.
+- **Enterprise-Grade Security:** Custom JWT session handling in HTTP-only cookies (`jose`), password hashing via `bcryptjs`, and server-side protected route middleware.
+- **Modern UI & Micro-Animations:** Built with Next.js 16 App Router, Tailwind CSS, and Framer Motion micro-interactions.
 
 ---
 
-
 ## Business Value & Target Audience
 
-- **Target Audience:** HR and Operations departments of mid-sized companies (50-500 employees).
-- **Value Proposition:** Replaces chaotic Excel spreadsheets and fragmented HR tools with a unified, secure, Role-Based Access Control (RBAC) console that automates employee onboarding, offboarding, and performance tracking.
+- **Target Audience:** Operations leads, department managers, and HR teams managing distributed or hybrid corporate workforces.
+- **Value Proposition:** Eliminates disjointed spreadsheets and manual check-ins by providing a single, unified operations portal for delegating tasks, tracking daily work hours, and analyzing team productivity in real time.
 
 ## Monetization & Go-to-Market Strategy
 
-- **Pricing Model:** Pay-per-seat subscription ($4/month per active employee).
-- **Enterprise Plan:** Custom pricing for Active Directory (SSO) integration and on-premise deployments.
-- **Go-to-Market:** Cold outreach to HR managers offering a free "employee performance audit template," followed by a 14-day free trial of the Performo dashboard.
-
-## Future Planned Features
-
-- **Employee Management:** Extended profile details and document management.
-- **Performance Scoring:** Quarterly and annual performance tracking systems.
-- **Task Tracking:** Project and task assignment for team members.
-- **Analytics and Reports:** Detailed productivity reports and department-wise analytics.
+- **Pricing Model:** Pay-per-seat SaaS subscription ($4/month per active user).
+- **Enterprise Plan:** Dedicated deployments with custom department reporting and SSO integration.
+- **Go-to-Market:** Product-led outreach to team leads and operations managers seeking visibility into daily project progress and time distribution.
 
 ---
 
