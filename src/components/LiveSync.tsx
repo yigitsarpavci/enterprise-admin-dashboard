@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useLanguage } from './LanguageProvider';
 
 export default function LiveSync({ interval = 10000 }: { interval?: number }) {
   const { t } = useLanguage();
-  const router = useRouter();
   const [lastSync, setLastSync] = useState<Date | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -15,12 +13,11 @@ export default function LiveSync({ interval = 10000 }: { interval?: number }) {
     setLastSync(new Date());
 
     const timer = setInterval(() => {
-      router.refresh();
       setLastSync(new Date());
     }, interval);
 
     return () => clearInterval(timer);
-  }, [router, interval]);
+  }, [interval]);
 
   if (!isMounted) return null;
 

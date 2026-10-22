@@ -67,7 +67,7 @@ export default async function AdminPage({
 
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-10 py-16 fade-in">
-      <LiveSync interval={5000} />
+      <LiveSync />
       
       {/* --- Intelligent Header --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 mb-20">
