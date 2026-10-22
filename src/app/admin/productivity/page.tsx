@@ -127,25 +127,25 @@ export default async function ProductivityPage({
       </div>
 
       {/* Filters */}
-      <div className="bg-zinc-900/40 backdrop-blur-xl rounded-[32px] border border-white/5 p-8 mb-16 relative z-10">
+      <div className="clean-card p-8 mb-16 relative z-10">
         <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="space-y-2">
-            <label className="text-[9px] font-black text-zinc-600 uppercase tracking-widest ml-1">{t('startDate')}</label>
-            <input type="date" name="start" defaultValue={startDate} className="w-full px-4 py-3 bg-zinc-950 border border-white/5 rounded-xl text-xs font-bold text-zinc-300 outline-none focus:ring-1 focus:ring-cyan-500/50" />
+            <label className="text-[9px] font-black text-[var(--muted)] uppercase tracking-widest ml-1">{t('startDate')}</label>
+            <input type="date" name="start" defaultValue={startDate} className="w-full px-4 py-3 bg-[var(--accent)] border border-[var(--border)] rounded-xl text-xs font-bold text-[var(--foreground)] outline-none focus:ring-1 focus:ring-[var(--foreground)]/20" />
           </div>
           <div className="space-y-2">
-            <label className="text-[9px] font-black text-zinc-600 uppercase tracking-widest ml-1">{t('endDate')}</label>
-            <input type="date" name="end" defaultValue={endDate} className="w-full px-4 py-3 bg-zinc-950 border border-white/5 rounded-xl text-xs font-bold text-zinc-300 outline-none focus:ring-1 focus:ring-cyan-500/50" />
+            <label className="text-[9px] font-black text-[var(--muted)] uppercase tracking-widest ml-1">{t('endDate')}</label>
+            <input type="date" name="end" defaultValue={endDate} className="w-full px-4 py-3 bg-[var(--accent)] border border-[var(--border)] rounded-xl text-xs font-bold text-[var(--foreground)] outline-none focus:ring-1 focus:ring-[var(--foreground)]/20" />
           </div>
           <div className="space-y-2">
-            <label className="text-[9px] font-black text-zinc-600 uppercase tracking-widest ml-1">{t('department')}</label>
-            <select name="department" defaultValue={department} className="w-full px-4 py-3 bg-zinc-950 border border-white/5 rounded-xl text-xs font-bold text-zinc-400 outline-none focus:ring-1 focus:ring-cyan-500/50 appearance-none cursor-pointer">
+            <label className="text-[9px] font-black text-[var(--muted)] uppercase tracking-widest ml-1">{t('department')}</label>
+            <select name="department" defaultValue={department} className="w-full px-4 py-3 bg-[var(--accent)] border border-[var(--border)] rounded-xl text-xs font-bold text-[var(--foreground)] outline-none focus:ring-1 focus:ring-[var(--foreground)]/20 appearance-none cursor-pointer">
               <option value="">{t('allDepartments')}</option>
               {departments.map(d => <option key={d.department} value={d.department!}>{d.department}</option>)}
             </select>
           </div>
           <div className="flex items-end">
-             <button type="submit" className="w-full py-3 bg-white text-zinc-950 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-cyan-500 hover:text-white transition-all shadow-xl">
+             <button type="submit" className="w-full py-3 bg-[var(--foreground)] text-[var(--background)] rounded-xl text-[10px] font-black uppercase tracking-widest hover:opacity-90 transition-all shadow-md">
                {t('syncAnalytics')}
              </button>
           </div>

@@ -94,13 +94,13 @@ export default async function AdminTasksPage({
 
         {tasks.length === 0 ? (
           <MotionWrapper delay={0.4}>
-            <div className="py-32 text-center nexus-glass rounded-[48px] border-dashed">
-              <p className="text-zinc-800 font-black uppercase tracking-[0.5em] text-[11px]">{t('noActiveMissions')}</p>
+            <div className="py-32 text-center clean-card border-dashed">
+              <p className="text-[var(--muted)] font-black uppercase tracking-[0.5em] text-[11px]">{t('noActiveMissions')}</p>
             </div>
           </MotionWrapper>
         ) : tasks.map((task, index) => (
           <MotionWrapper key={task.id} delay={0.3 + (index * 0.05)}>
-            <div className="nexus-glass rounded-[40px] p-12 hover:nexus-glass-heavy transition-all duration-500 group relative overflow-hidden">
+            <div className="clean-card p-8 md:p-10 group relative overflow-hidden">
               <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${
                 task.status === 'COMPLETED' ? 'from-green-500 to-transparent' : 
                 task.status === 'IN_PROGRESS' ? 'from-cyan-500 to-transparent' : 'from-zinc-500 to-transparent'
@@ -109,21 +109,21 @@ export default async function AdminTasksPage({
               <div className="flex flex-col lg:flex-row justify-between gap-12">
                 <div className="flex-grow space-y-8">
                   <div className="flex items-start gap-8">
-                    <div className="w-16 h-16 rounded-[24px] bg-zinc-950 border border-white/10 flex items-center justify-center text-xl font-black text-zinc-600 italic shadow-inner shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-[var(--accent)] border border-[var(--border)] flex items-center justify-center text-xl font-black text-[var(--muted)] italic shadow-inner shrink-0">
                       {(task.employee.name || 'U').substring(0, 1).toUpperCase()}
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black text-white italic tracking-tighter group-hover:neon-text-cyan transition-all mb-2">{task.title}</h3>
+                      <h3 className="text-xl md:text-2xl font-black text-[var(--foreground)] italic tracking-tight transition-all mb-2">{task.title}</h3>
                       <div className="flex items-center gap-4">
-                        <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest">{task.employee.name}</span>
-                        <div className="w-1 h-1 rounded-full bg-zinc-800" />
-                        <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">{task.employee.employeeProfile?.department || 'UNIT_UNSET'}</span>
+                        <span className="text-[10px] font-black text-cyan-500 uppercase tracking-widest">{task.employee.name}</span>
+                        <div className="w-1 h-1 rounded-full bg-[var(--border)]" />
+                        <span className="text-[10px] font-black text-[var(--muted)] uppercase tracking-widest">{task.employee.employeeProfile?.department || 'UNIT_UNSET'}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-black/20 rounded-3xl p-8 border border-white/5 group-hover:border-white/10 transition-colors">
-                    <p className="text-zinc-400 text-sm font-medium leading-relaxed italic">{task.description || 'MISSION_DATA_EMPTY'}</p>
+                  <div className="bg-[var(--accent)]/50 rounded-2xl p-6 border border-[var(--border)]">
+                    <p className="text-[var(--muted)] text-sm font-medium leading-relaxed italic">{task.description || 'MISSION_DATA_EMPTY'}</p>
                   </div>
                 </div>
 
