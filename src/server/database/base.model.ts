@@ -15,6 +15,6 @@ export abstract class BaseEntity {
   @DeleteDateColumn({ name: "deleted_at", nullable: true })
   deletedAt?: Date;
 
-  @Column({ name: "created_by", nullable: true })
+  @Column({ name: "created_by", type: "varchar", nullable: true })
   createdBy?: string;
 }

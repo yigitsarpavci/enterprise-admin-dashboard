@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import next from "next";
 import { AppDataSource } from "./src/server/database/config";
 import { createExpressApp } from "./src/server/app";

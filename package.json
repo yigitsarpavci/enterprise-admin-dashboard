@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "test": "jest",
-    "seed": "prisma db seed"
+    "dev": "./node_modules/.bin/next dev",
+    "build": "./node_modules/.bin/next build",
+    "start": "./node_modules/.bin/next start",
+    "lint": "./node_modules/.bin/eslint",
+    "test": "./node_modules/.bin/jest",
+    "seed": "./node_modules/.bin/prisma db seed"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
