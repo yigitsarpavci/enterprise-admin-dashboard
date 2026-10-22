@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: TranslationKey) => string;
+  t: (key: TranslationKey | any, params?: Record<string, string | number>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -36,8 +36,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     router.refresh();
   };
 
-  const t = (key: TranslationKey) => {
-    return translations[language][key] || translations['en'][key] || key;
+  const t = (key: TranslationKey | any, params?: Record<string, string | number>) => {
+    let text = (translations[language] as any)?.[key] || (translations['en'] as any)?.[key] || key;
+    if (params && typeof text === 'string') {
+      Object.entries(params).forEach(([pKey, pVal]) => {
+        text = text.replace(new RegExp(`{${pKey}}`, 'g'), String(pVal));
+      });
+    }
+    return text;
   };
 
   return (

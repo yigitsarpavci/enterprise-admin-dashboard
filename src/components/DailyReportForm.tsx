@@ -12,7 +12,7 @@ interface WorkLog {
   taskId?: string;
 }
 
-export default function DailyReportForm({ tasks, initialLogs = [] }: { tasks: any[], initialLogs?: WorkLog[] }) {
+export default function DailyReportForm({ tasks, initialLogs = [], userId }: { tasks: any[], initialLogs?: WorkLog[], userId?: string }) {
   const { t } = useLanguage();
   const [logs, setLogs] = useState<WorkLog[]>(initialLogs);
   const [isPending, setIsPending] = useState(false);

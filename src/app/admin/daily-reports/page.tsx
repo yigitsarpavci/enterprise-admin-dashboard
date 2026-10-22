@@ -123,12 +123,12 @@ export default async function AdminDailyReportsPage({
       {/* --- Dynamic Range Metrics --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         <MinimalStatCard 
-          label={`${t('totalOperationalTime')} (${t(range)})`} 
+          label={`${t('totalOperationalTime')} (${t(range as any)})`} 
           value={`${Math.floor(totalWorkMinutes / 60)}h`} 
           subValue={`${reports.length} ${t('nodesSynced')}`} 
         />
         <MinimalStatCard 
-          label={`${t('routineCompliance')} (${t(range)})`} 
+          label={`${t('routineCompliance')} (${t(range as any)})`} 
           value={`%${routinePercentage.toFixed(1)}`} 
           subValue={t('dailyRoutineChecklist')} 
         />

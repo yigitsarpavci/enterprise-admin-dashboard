@@ -1,11 +1,11 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, Suspense } from 'react';
 import { loginAction } from './actions';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useLanguage } from '@/components/LanguageProvider';
 
-export default function LoginPage() {
+function LoginForm() {
   const { t, language, setLanguage } = useLanguage();
   const [state, action, isPending] = useActionState(loginAction, undefined);
   const searchParams = useSearchParams();
@@ -97,5 +97,13 @@ export default function LoginPage() {
          <div className="w-px h-12 bg-gradient-to-b from-[var(--foreground)] to-transparent" />
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[var(--background)]" />}>
+      <LoginForm />
+    </Suspense>
   );
 }

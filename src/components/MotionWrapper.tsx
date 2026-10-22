@@ -11,7 +11,7 @@ export default function MotionWrapper({
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
 }) {
-  const variants = {
+  const variants: any = {
     hidden: { 
       opacity: 0, 
       y: direction === 'up' ? 30 : direction === 'down' ? -30 : 0,
