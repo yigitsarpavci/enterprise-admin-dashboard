@@ -30,8 +30,9 @@ export async function createSession(userId: string, role: string) {
   const cookieStore = await cookies();
   cookieStore.set('session', session, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: process.env.COOKIE_SECURE === 'true',
     expires: expiresAt,
+    maxAge: 7 * 24 * 60 * 60,
     sameSite: 'lax',
     path: '/',
   });
@@ -39,7 +40,14 @@ export async function createSession(userId: string, role: string) {
 
 export async function deleteSession() {
   const cookieStore = await cookies();
-  cookieStore.delete('session');
+  cookieStore.set('session', '', {
+    httpOnly: true,
+    secure: process.env.COOKIE_SECURE === 'true',
+    maxAge: 0,
+    expires: new Date(0),
+    sameSite: 'lax',
+    path: '/',
+  });
 }
 
 export async function getSession() {
