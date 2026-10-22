@@ -1,6 +1,6 @@
 # Enterprise Operations & Knowledge Platform (Performo)
 
-A modern, secure, and professional full-stack enterprise operations platform coupling workforce delegation with a decoupled Express 5 REST API and Knowledge Base (SOP/FAQ) engine. Built with Next.js 16, TypeScript, TypeORM, Prisma, Recharts, and test-driven architecture (Jest + Supertest).
+A modern full-stack enterprise operations platform for daily activity audits, productivity benchmarking, and internal SOP knowledge bases. Built with Next.js 16, a decoupled Express 5 REST API, TypeORM, Prisma, Recharts analytics, SWR optimistic caching, and test-driven integration suites (Jest + Supertest).
 
 ---
 
