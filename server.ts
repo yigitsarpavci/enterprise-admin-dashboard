@@ -4,7 +4,7 @@ import { AppDataSource } from "./src/server/database/config";
 import { createExpressApp } from "./src/server/app";
 
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const app = next({ dev, turbopack: false });
 const handle = app.getRequestHandler();
 
 app
