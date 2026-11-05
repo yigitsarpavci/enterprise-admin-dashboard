@@ -52,3 +52,6 @@ prisma/dev.db
 # AI agent configs
 AGENTS.md
 CLAUDE.md
+
+# Local archive docs
+docs/

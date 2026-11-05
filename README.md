@@ -1,5 +1,12 @@
 # Enterprise Operations & Knowledge Platform (Performo)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Next.js 16](https://img.shields.io/badge/Frontend-Next.js%2016-black?logo=next.js&logoColor=white)](#tech-stack)
+[![Express 5](https://img.shields.io/badge/Backend-Express%205-000000?logo=express&logoColor=white)](#tech-stack)
+[![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?logo=typescript&logoColor=white)](#tech-stack)
+[![Prisma | TypeORM](https://img.shields.io/badge/ORM-Prisma%20%7C%20TypeORM-2D3748?logo=prisma&logoColor=white)](#tech-stack)
+[![Testing: Jest & Supertest](https://img.shields.io/badge/Testing-Jest%20%7C%20Supertest-C21325?logo=jest&logoColor=white)](#testing--quality-assurance)
+
 A modern full-stack enterprise operations platform for daily activity audits, productivity benchmarking, and internal SOP knowledge bases. Built with Next.js 16, a decoupled Express 5 REST API, TypeORM, Prisma, Recharts analytics, SWR optimistic caching, and test-driven integration suites (Jest + Supertest).
 
 ---
@@ -131,4 +138,16 @@ npm start
 
 ## License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+## Author
+
+**Yiğit Sarp Avcı**  
+Computer Engineering Student @ Boğaziçi University  
+[GitHub Profile](https://github.com/yigitsarpavci) · [LinkedIn](https://www.linkedin.com/in/yigitsarpavci)
+
+---
+
+*Developed by Yiğit Sarp Avcı*
