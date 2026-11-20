@@ -5,8 +5,8 @@ export async function getAdminStats(range: string = '7days', startParam?: string
   const today = getTodayLocal();
   
   // Date Filter Logic
-  let dateFilter: any = {};
-  let prevDateFilter: any = {};
+  let dateFilter: { gte?: Date; lt?: Date; lte?: Date } = {};
+  let prevDateFilter: { gte?: Date; lt?: Date; lte?: Date } = {};
   
   if (range === 'today') {
     dateFilter = { gte: today };

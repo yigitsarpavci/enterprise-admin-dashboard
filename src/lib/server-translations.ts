@@ -1,12 +1,12 @@
 import { cookies } from 'next/headers';
-import { translations, TranslationKey, Language } from './translations';
+import { translations, Language } from './translations';
 
 export async function getTranslation() {
   const cookieStore = await cookies();
   const lang = (cookieStore.get('nexus-lang')?.value || 'tr') as Language;
   
-  return (key: TranslationKey | any, params?: Record<string, string | number>) => {
-    let text = (translations[lang] as any)?.[key] || (translations['en'] as any)?.[key] || key;
+  return (key: string, params?: Record<string, string | number>) => {
+    let text: string = (translations[lang] as Record<string, string | undefined>)?.[key] || (translations['en'] as Record<string, string | undefined>)?.[key] || key;
     if (params && typeof text === 'string') {
       Object.entries(params).forEach(([pKey, pVal]) => {
         text = text.replace(new RegExp(`{${pKey}}`, 'g'), String(pVal));

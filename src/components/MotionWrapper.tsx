@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 export default function MotionWrapper({ 
   children, 
@@ -11,7 +11,7 @@ export default function MotionWrapper({
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
 }) {
-  const variants: any = {
+  const variants: Variants = {
     hidden: { 
       opacity: 0, 
       y: direction === 'up' ? 30 : direction === 'down' ? -30 : 0,

@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import { revalidatePath } from 'next/cache';
 import { getTranslation } from '@/lib/server-translations';
 
-export async function createUserAction(prevState: any, formData: FormData) {
+export async function createUserAction(prevState: unknown, formData: FormData) {
   const t = await getTranslation();
   try {
     await requireAdmin();
@@ -84,7 +84,7 @@ export async function deleteUserAction(userId: string) {
   }
 }
 
-export async function createTaskAction(prevState: any, formData: FormData) {
+export async function createTaskAction(prevState: unknown, formData: FormData) {
   const t = await getTranslation();
   try {
     await requireAdmin();

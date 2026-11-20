@@ -12,7 +12,7 @@ export function createExpressApp(): Express {
   // Global Error Handler
   app.use(
     (
-      err: any,
+      err: Error & { statusCode?: number },
       req: express.Request,
       res: express.Response,
       next: express.NextFunction

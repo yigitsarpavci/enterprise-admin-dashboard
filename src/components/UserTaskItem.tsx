@@ -1,6 +1,7 @@
 'use client';
 
-import { useOptimistic, useTransition, useState, useEffect } from 'react';
+import { useOptimistic, useTransition } from 'react';
+import { useMounted } from '@/lib/hooks/use-mounted';
 import { updateTaskStatusAction } from '@/app/dashboard/actions';
 import { useLanguage } from '@/components/LanguageProvider';
 import { motion } from 'framer-motion';
@@ -18,11 +19,7 @@ interface UserTaskItemProps {
 export default function UserTaskItem({ task }: UserTaskItemProps) {
   const { t } = useLanguage();
   const [isPending, startTransition] = useTransition();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   // Optimized for Next.js 14/15: Use useOptimistic for immediate, stable UI feedback
   const [optimisticStatus, addOptimisticStatus] = useOptimistic(

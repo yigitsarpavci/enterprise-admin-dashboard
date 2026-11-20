@@ -6,7 +6,7 @@ import { createSession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 import { getTranslation } from '@/lib/server-translations';
 
-export async function loginAction(prevState: any, formData: FormData) {
+export async function loginAction(prevState: unknown, formData: FormData) {
   const t = await getTranslation();
   const name = formData.get('name') as string;
   const password = formData.get('password') as string;

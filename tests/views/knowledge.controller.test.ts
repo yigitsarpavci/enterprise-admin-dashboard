@@ -10,16 +10,16 @@ import {
 import { AppError } from "../../src/server/middlewares/error.middleware";
 
 const mockResponse = () => {
-  const res: any = {};
+  const res: Record<string, jest.Mock> = {};
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
-  return res as Response;
+  return res as unknown as Response;
 };
 
 const mockRequest = (
-  body: any = {},
-  params: any = {},
-  user: any = { userId: "admin-operator" }
+  body: Record<string, unknown> = {},
+  params: Record<string, string> = {},
+  user: Record<string, unknown> = { userId: "admin-operator" }
 ) => {
   return {
     body,

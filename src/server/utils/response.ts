@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-export const successResponse = (res: Response, data: any, statusCode: number = 200) => {
+export const successResponse = (res: Response, data: unknown, statusCode: number = 200) => {
   return res.status(statusCode).json({
     success: true,
     data,

@@ -1,13 +1,13 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { translations, Language, TranslationKey } from '@/lib/translations';
+import { translations, Language } from '@/lib/translations';
 import { useRouter } from 'next/navigation';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: TranslationKey | any, params?: Record<string, string | number>) => string;
+  t: (key: string, params?: Record<string, string | number>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -23,6 +23,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const savedLang = langCookie ? langCookie.split('=')[1] as Language : localStorage.getItem('nexus-lang') as Language;
     
     if (savedLang && (savedLang === 'tr' || savedLang === 'en')) {
+      // Browser-only storage must be read after hydration to avoid an SSR mismatch.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguageState(savedLang);
     }
   }, []);
@@ -36,8 +38,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     router.refresh();
   };
 
-  const t = (key: TranslationKey | any, params?: Record<string, string | number>) => {
-    let text = (translations[language] as any)?.[key] || (translations['en'] as any)?.[key] || key;
+  const t = (key: string, params?: Record<string, string | number>) => {
+    let text: string = (translations[language] as Record<string, string | undefined>)?.[key] || (translations['en'] as Record<string, string | undefined>)?.[key] || key;
     if (params && typeof text === 'string') {
       Object.entries(params).forEach(([pKey, pVal]) => {
         text = text.replace(new RegExp(`{${pKey}}`, 'g'), String(pVal));

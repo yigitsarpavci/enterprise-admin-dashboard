@@ -14,22 +14,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
 
-  useEffect(() => {
-    // Check local storage or system preference
-    const savedTheme = localStorage.getItem('nexus-theme') as Theme;
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const initialTheme = savedTheme || systemTheme;
-    
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
-  }, []);
-
   const applyTheme = (newTheme: Theme) => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(newTheme);
     localStorage.setItem('nexus-theme', newTheme);
   };
+
+  useEffect(() => {
+    // Check local storage or system preference
+    const savedTheme = localStorage.getItem('nexus-theme') as Theme;
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const initialTheme = savedTheme || systemTheme;
+    
+    // Browser-only preference must be read after hydration to avoid an SSR mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTheme(initialTheme);
+    applyTheme(initialTheme);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

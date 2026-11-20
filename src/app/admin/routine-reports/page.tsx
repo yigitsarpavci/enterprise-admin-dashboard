@@ -84,7 +84,14 @@ export default async function RoutineReportsPage({
   });
 
   // Calculate Employee Matrix
-  const matrix = reports.reduce((acc: any, r) => {
+  interface MatrixRow {
+    name: string | null;
+    dept: string;
+    checks: Record<string, { c: number; t: number }>;
+    totalChecked: number;
+    totalPossible: number;
+  }
+  const matrix = reports.reduce((acc: Record<string, MatrixRow>, r) => {
     if (!acc[r.employeeId]) {
       acc[r.employeeId] = {
         name: r.employee.name,
@@ -108,7 +115,7 @@ export default async function RoutineReportsPage({
     return acc;
   }, {});
 
-  const matrixList = Object.values(matrix).sort((a: any, b: any) => (b.totalChecked / b.totalPossible) - (a.totalChecked / a.totalPossible));
+  const matrixList = Object.values(matrix).sort((a, b) => (b.totalChecked / b.totalPossible) - (a.totalChecked / a.totalPossible));
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 fade-in">
@@ -169,7 +176,7 @@ export default async function RoutineReportsPage({
                 <tr>
                   <td colSpan={routineItems.length + 2} className="px-8 py-20 text-center text-zinc-400 font-bold uppercase tracking-widest text-[10px]">{t('noMissionsHistory')}</td>
                 </tr>
-              ) : matrixList.map((emp: any, i) => (
+              ) : matrixList.map((emp, i) => (
                 <tr key={i} className="hover:bg-zinc-50/50 dark:hover:bg-zinc-900/50 transition-colors">
                   <td className="px-8 py-6">
                     <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{emp.name}</p>

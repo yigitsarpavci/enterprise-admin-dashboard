@@ -8,7 +8,7 @@ export const fetcher = async ([url, token]: [string, string]) => {
     cache: "no-store",
   });
   if (!res.ok) {
-    const error: any = new Error("An error occurred");
+    const error = new Error("An error occurred") as Error & { info?: unknown; status?: number };
     error.info = await res.json().catch(() => ({}));
     error.status = res.status;
     throw error;
@@ -17,7 +17,7 @@ export const fetcher = async ([url, token]: [string, string]) => {
 };
 
 export const apiClient = {
-  post: async (url: string, data: any, token: string = "mock-token") => {
+  post: async (url: string, data: unknown, token: string = "mock-token") => {
     const res = await fetch(url, {
       method: "POST",
       headers: {

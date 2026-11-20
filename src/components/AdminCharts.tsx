@@ -16,7 +16,7 @@ import {
 
 interface ChartProps {
   title: string;
-  data: any[];
+  data: Record<string, string | number>[];
   dataKey: string;
   nameKey: string;
   type?: 'bar' | 'area' | 'line';
@@ -132,7 +132,7 @@ export function AdminChartCard({ title, data, dataKey, nameKey, type = 'bar', co
   );
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: { value?: number | string }[]; label?: string | number }) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-[var(--card)] p-6 rounded-[24px] shadow-2xl border border-[var(--border)] fade-in">

@@ -2,16 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { useLanguage } from './LanguageProvider';
+import { useMounted } from '@/lib/hooks/use-mounted';
 
 export default function LiveSync({ interval = 10000 }: { interval?: number }) {
   const { t } = useLanguage();
-  const [lastSync, setLastSync] = useState<Date | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const [lastSync, setLastSync] = useState<Date>(() => new Date());
+  const isMounted = useMounted();
 
   useEffect(() => {
-    setIsMounted(true);
-    setLastSync(new Date());
-
     const timer = setInterval(() => {
       setLastSync(new Date());
     }, interval);

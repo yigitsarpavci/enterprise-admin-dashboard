@@ -19,7 +19,7 @@ interface Employee {
   } | null;
 }
 
-export default function EmployeeListClient({ users }: { users: any[] }) {
+export default function EmployeeListClient({ users }: { users: Employee[] }) {
   const { t } = useLanguage();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isBulkTaskOpen, setIsBulkTaskOpen] = useState(false);

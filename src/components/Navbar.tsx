@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ name: string; role: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
