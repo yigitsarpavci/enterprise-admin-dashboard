@@ -2,10 +2,22 @@ import express, { Express } from "express";
 import request from "supertest";
 import { AppDataSource } from "../../src/server/database/config";
 import knowledgeRouter from "../../src/server/routes/knowledge.routes";
+import { encrypt } from "../../src/lib/session-token";
 
 let app: Express;
+let adminCookie: string;
+let userCookie: string;
+
+// Authenticated supertest agent: the API requires the signed session cookie issued at login.
+const asAdmin = () => ({
+  get: (url: string) => request(app).get(url).set("Cookie", adminCookie),
+  post: (url: string) => request(app).post(url).set("Cookie", adminCookie),
+  delete: (url: string) => request(app).delete(url).set("Cookie", adminCookie),
+});
 
 beforeAll(async () => {
+  adminCookie = `session=${await encrypt({ userId: "admin-1", role: "ADMIN" })}`;
+  userCookie = `session=${await encrypt({ userId: "user-1", role: "USER" })}`;
   await AppDataSource.initialize();
   app = express();
   app.use(express.json());
@@ -24,7 +36,7 @@ beforeEach(async () => {
 
 describe("Knowledge Base & FAQ Express API Integration Tests (Supertest)", () => {
   it("should fail POST /api/knowledge with missing question", async () => {
-    const res = await request(app)
+    const res = await asAdmin()
       .post("/api/knowledge")
       .send({ answer: "Standard Operating Procedure details." });
     expect(res.status).toBe(400);
@@ -33,7 +45,7 @@ describe("Knowledge Base & FAQ Express API Integration Tests (Supertest)", () =>
   });
 
   it("should fail POST /api/knowledge with missing answer", async () => {
-    const res = await request(app)
+    const res = await asAdmin()
       .post("/api/knowledge")
       .send({ question: "How to request PTO?" });
     expect(res.status).toBe(400);
@@ -43,7 +55,7 @@ describe("Knowledge Base & FAQ Express API Integration Tests (Supertest)", () =>
 
   it("should fail POST /api/knowledge with question length > 500 characters", async () => {
     const longQuestion = "a".repeat(501);
-    const res = await request(app)
+    const res = await asAdmin()
       .post("/api/knowledge")
       .send({ question: longQuestion, answer: "Valid answer." });
     expect(res.status).toBe(400);
@@ -52,14 +64,14 @@ describe("Knowledge Base & FAQ Express API Integration Tests (Supertest)", () =>
   });
 
   it("should fail DELETE /api/knowledge/:id with invalid UUID format", async () => {
-    const res = await request(app).delete("/api/knowledge/invalid-uuid-id");
+    const res = await asAdmin().delete("/api/knowledge/invalid-uuid-id");
     expect(res.status).toBe(400);
     expect(res.body.success).toBe(false);
     expect(res.body.errors[0].msg).toBe("Invalid ID format");
   });
 
   it("should succeed POST /api/knowledge with valid payload and return 201", async () => {
-    const res = await request(app).post("/api/knowledge").send({
+    const res = await asAdmin().post("/api/knowledge").send({
       question: "What is the corporate remote work policy?",
       answer: "Employees may work remotely on Tuesdays and Thursdays upon manager approval.",
       is_active: true,
@@ -72,7 +84,7 @@ describe("Knowledge Base & FAQ Express API Integration Tests (Supertest)", () =>
 
   it("should execute end-to-end integration lifecycle: create -> get active -> delete -> verify deletion", async () => {
     // 1. Create
-    const createRes = await request(app).post("/api/knowledge").send({
+    const createRes = await asAdmin().post("/api/knowledge").send({
       question: "How to report security incidents?",
       answer: "Notify the SOC team via Slack #incident-response immediately.",
     });
@@ -80,23 +92,46 @@ describe("Knowledge Base & FAQ Express API Integration Tests (Supertest)", () =>
     const entryId = createRes.body.data.id;
 
     // 2. Fetch active entries
-    let fetchRes = await request(app).get("/api/knowledge/active");
+    let fetchRes = await asAdmin().get("/api/knowledge/active");
     expect(fetchRes.status).toBe(200);
     expect(fetchRes.body.data.length).toBe(1);
     expect(fetchRes.body.data[0].id).toBe(entryId);
 
     // 3. Fetch single entry by ID
-    const singleRes = await request(app).get(`/api/knowledge/${entryId}`);
+    const singleRes = await asAdmin().get(`/api/knowledge/${entryId}`);
     expect(singleRes.status).toBe(200);
     expect(singleRes.body.data.question).toBe("How to report security incidents?");
 
     // 4. Delete entry
-    const deleteRes = await request(app).delete(`/api/knowledge/${entryId}`);
+    const deleteRes = await asAdmin().delete(`/api/knowledge/${entryId}`);
     expect(deleteRes.status).toBe(200);
 
     // 5. Verify deletion
-    fetchRes = await request(app).get("/api/knowledge/active");
+    fetchRes = await asAdmin().get("/api/knowledge/active");
     expect(fetchRes.status).toBe(200);
     expect(fetchRes.body.data.length).toBe(0);
+  });
+
+  it("rejects unauthenticated requests with 401", async () => {
+    const res = await request(app).get("/api/knowledge/active");
+    expect(res.status).toBe(401);
+    expect(res.body.success).toBe(false);
+  });
+
+  it("rejects a forged or tampered session cookie with 401", async () => {
+    const res = await request(app)
+      .get("/api/knowledge/active")
+      .set("Cookie", `${adminCookie.slice(0, -3)}abc`);
+    expect(res.status).toBe(401);
+  });
+
+  it("lets a regular USER read but not write (403)", async () => {
+    const read = await request(app).get("/api/knowledge/active").set("Cookie", userCookie);
+    expect(read.status).toBe(200);
+    const write = await request(app)
+      .post("/api/knowledge")
+      .set("Cookie", userCookie)
+      .send({ question: "Q?", answer: "A." });
+    expect(write.status).toBe(403);
   });
 });

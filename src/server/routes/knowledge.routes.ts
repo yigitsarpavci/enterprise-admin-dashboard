@@ -23,7 +23,7 @@ router.get(
 router.post(
   "/",
   authenticate,
-  authorize("super_admin", "system", "admin"),
+  authorize("ADMIN"),
   validate([
     body("question")
       .isString()
@@ -52,7 +52,7 @@ router.post(
 router.delete(
   "/:id",
   authenticate,
-  authorize("super_admin", "system", "admin"),
+  authorize("ADMIN"),
   validate([param("id").isUUID().withMessage("Invalid ID format")]),
   deleteEntry
 );

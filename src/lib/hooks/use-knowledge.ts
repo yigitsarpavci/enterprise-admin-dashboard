@@ -12,10 +12,8 @@ export interface KnowledgeItem {
 }
 
 export function useKnowledgeBase() {
-  const token = "mock-token";
-
   const { data, error, isLoading, mutate } = useSWR(
-    ["/api/knowledge/active", token],
+    "/api/knowledge/active",
     fetcher,
     { revalidateOnFocus: false }
   );

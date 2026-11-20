@@ -1,7 +1,7 @@
-export const fetcher = async ([url, token]: [string, string]) => {
+export const fetcher = async (url: string) => {
   const res = await fetch(url, {
+    credentials: "same-origin",
     headers: {
-      Authorization: `Bearer ${token}`,
       "Cache-Control": "no-cache, no-store, must-revalidate",
       Pragma: "no-cache",
     },
@@ -17,12 +17,12 @@ export const fetcher = async ([url, token]: [string, string]) => {
 };
 
 export const apiClient = {
-  post: async (url: string, data: unknown, token: string = "mock-token") => {
+  post: async (url: string, data: unknown) => {
     const res = await fetch(url, {
       method: "POST",
+      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     });
@@ -34,12 +34,10 @@ export const apiClient = {
     }
     return res.json();
   },
-  delete: async (url: string, token: string = "mock-token") => {
+  delete: async (url: string) => {
     const res = await fetch(url, {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: "same-origin",
       cache: "no-store",
     });
     if (!res.ok) {

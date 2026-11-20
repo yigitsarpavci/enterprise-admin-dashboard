@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { decrypt } from "../../lib/session-token";
 
 declare module "express-serve-static-core" {
   interface Request {
@@ -6,14 +7,23 @@ declare module "express-serve-static-core" {
   }
 }
 
-export const authenticate = (req: Request, res: Response, next: NextFunction) => {
-  // Extract bearer token or fallback to authenticated admin session
-  const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith("Bearer ")) {
-    req.user = { userId: "authenticated-operator", role: "super_admin" };
-  } else {
-    req.user = { userId: "mock-user-id", role: "super_admin" };
+function readCookie(header: string | undefined, name: string): string | undefined {
+  if (!header) return undefined;
+  for (const part of header.split(";")) {
+    const [key, ...rest] = part.trim().split("=");
+    if (key === name) return decodeURIComponent(rest.join("="));
   }
+  return undefined;
+}
+
+/** Requires a valid signed session cookie (the same one the Next.js app issues at login). */
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
+  const session = await decrypt(readCookie(req.headers.cookie, "session"));
+  if (!session?.userId || !session.role) {
+    res.status(401).json({ success: false, message: "Authentication required" });
+    return;
+  }
+  req.user = { userId: session.userId, role: session.role };
   next();
 };
 

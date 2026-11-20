@@ -25,7 +25,7 @@ A modern full-stack enterprise operations platform for daily activity audits, pr
 - **ORMs:** [Prisma ORM](https://www.prisma.io/) (Workforce Domain) & [TypeORM](https://typeorm.io/) (Knowledge Base DataMapper)
 - **Validation:** [express-validator](https://express-validator.github.io/docs/)
 - **Database:** SQLite (local persistent `dev.db` & in-memory `better-sqlite3` for test isolation)
-- **Authentication:** Custom JWT sessions in HTTP-only cookies (`jose`), `bcryptjs`, and Next-Auth RBAC
+- **Authentication:** Custom JWT sessions in HTTP-only cookies (`jose`), `bcryptjs`, and role-based access control enforced in Next.js middleware, Server Actions and the Express API
 
 ### Automated Testing (TDD)
 - **Framework:** [Jest](https://jestjs.io/) with `ts-jest`
@@ -101,9 +101,11 @@ npm test
 ```
 
 The test runner executes:
-1. **API Integration Tests** (`tests/api/knowledge.test.ts`) — Validates CRUD operations, schema constraints, status codes, and database persistence using Supertest.
+1. **API Integration Tests** (`tests/api/knowledge.test.ts`) — Validates CRUD operations, schema constraints, status codes, and database persistence using Supertest, including authentication (401 without a valid signed session cookie, 403 for non-admin writes).
 2. **Controller Unit Tests** (`tests/views/knowledge.controller.test.ts`) — Tests controller request-response lifecycles, error propagation, and filtering.
 3. **Frontend Component Tests** (`tests/frontend/knowledge.frontend.test.tsx`) — Tests dynamic search, loading skeletons, and empty states using React Testing Library.
+
+`npm run lint` and `npm run build` also run in CI (GitHub Actions) on every push.
 
 ---
 
@@ -118,6 +120,11 @@ The test runner executes:
 git clone https://github.com/yigitsarpavci/enterprise-admin-dashboard.git
 cd enterprise-admin-dashboard
 npm install
+```
+
+### Configuration
+```bash
+cp .env.example .env   # then set SESSION_SECRET (required in production)
 ```
 
 ### Database Initialization
