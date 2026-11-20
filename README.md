@@ -36,6 +36,30 @@ A modern full-stack enterprise operations platform for daily activity audits, pr
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart LR
+    Browser["Browser<br/>(React 19, SWR, Recharts)"] -->|"pages, server actions"| Next
+    Browser -->|"/api/knowledge, /api/faq<br/>session cookie"| Express
+
+    subgraph Server["server.ts: one Node process"]
+        Express["Express 5 REST API<br/>validate, authenticate, authorize"]
+        Next["Next.js 16 App Router<br/>middleware checks the session"]
+    end
+
+    Express --> TypeORM["TypeORM DataMapper<br/>KnowledgeBaseItem"]
+    Next --> Prisma["Prisma ORM<br/>users, tasks, work logs, compliance"]
+    TypeORM --> DB[("SQLite")]
+    Prisma --> DB
+    Session["Signed session JWT<br/>(jose, HTTP-only cookie)"] -.-> Next
+    Session -.-> Express
+```
+
+One signed, HTTP-only session cookie protects both halves: Next.js middleware gates `/admin` and `/dashboard`, and the Express `authenticate`/`authorize` middleware gates the knowledge-base API (401 without a valid session, 403 for non-admin writes).
+
+---
+
 ## Core Features
 
 - **Workforce Task Delegation & Tracking:** Assign strategic tasks to employees across departments, set deadlines, and monitor real-time execution across TODO, IN_PROGRESS, and DONE states.
