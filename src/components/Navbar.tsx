@@ -117,23 +117,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
-function NavLink({ href, children, active }: { href: string; children: React.ReactNode; active?: boolean }) {
-  return (
-    <Link 
-      href={href} 
-      className={`px-5 py-2 subheading-premium !text-[10px] !tracking-[0.1em] !mb-0 transition-all rounded-xl relative z-10 ${
-        active ? 'text-[var(--foreground)]' : 'text-[var(--muted)] hover:text-[var(--foreground)]'
-      }`}
-    >
-      {children}
-      {active && (
-        <motion.div 
-          layoutId="nav-active"
-          className="absolute inset-0 bg-[var(--accent)] rounded-xl -z-10 border border-[var(--border)]"
-          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-        />
-      )}
-    </Link>
-  );
-}

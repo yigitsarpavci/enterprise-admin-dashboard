@@ -15,6 +15,8 @@ export function createExpressApp(): Express {
       err: Error & { statusCode?: number },
       req: express.Request,
       res: express.Response,
+      // Express identifies error handlers by their 4-argument signature, so `next` must stay.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       next: express.NextFunction
     ) => {
       res.status(err.statusCode || 500).json({

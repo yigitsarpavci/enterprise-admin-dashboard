@@ -12,7 +12,7 @@ interface RoutineItem {
 
 export default function DailyRoutineChecklist({ items, checkedIds }: { items: RoutineItem[], checkedIds: string[] }) {
   const { t } = useLanguage();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   // Optimized for Next.js 14/15: Use useOptimistic for immediate, stable UI feedback
   const [optimisticChecked, addOptimisticChecked] = useOptimistic(

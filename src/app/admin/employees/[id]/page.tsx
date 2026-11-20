@@ -2,7 +2,7 @@ import { requireAdmin } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getTodayLocal, parseLocalDate, formatLocalDate } from '@/lib/date';
+import { parseLocalDate, formatLocalDate } from '@/lib/date';
 import { getTranslation } from '@/lib/server-translations';
 
 export default async function EmployeeDetailPage({

@@ -134,7 +134,6 @@ export default async function DashboardPage() {
            </div>
            <div className="clean-card p-8">
              <DailyReportForm 
-               userId={user.id} 
                tasks={user.tasks} 
                initialLogs={user.dailyReports[0]?.workLogs.map(log => ({
                  id: log.id,

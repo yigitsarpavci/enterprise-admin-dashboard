@@ -1,9 +1,8 @@
 /** @jest-environment jsdom */
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import KnowledgeBasePage from "../../src/app/admin/knowledge-base/page";
 import { useKnowledgeBase } from "../../src/lib/hooks/use-knowledge";
-import { apiClient } from "../../src/lib/api";
 import { LanguageProvider } from "../../src/components/LanguageProvider";
 
 jest.mock("next/navigation", () => ({
@@ -34,7 +33,6 @@ const renderComponent = () =>
   );
 
 const mockedUseKnowledgeBase = useKnowledgeBase as jest.Mock;
-const mockedApiClient = apiClient as jest.Mocked<typeof apiClient>;
 
 describe("KnowledgeBasePage Frontend Component (React Testing Library)", () => {
   beforeEach(() => {

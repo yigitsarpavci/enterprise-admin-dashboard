@@ -1,7 +1,6 @@
 import { requireAdmin } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
-import { AdminChartCard } from '@/components/AdminCharts';
 import { parseLocalDate } from '@/lib/date';
 import { getTranslation } from '@/lib/server-translations';
 import HistoryFilters from '@/components/HistoryFilters';

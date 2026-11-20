@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
-import { useKnowledgeBase, KnowledgeItem } from "@/lib/hooks/use-knowledge";
+import { useKnowledgeBase } from "@/lib/hooks/use-knowledge";
 import { apiClient } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
 

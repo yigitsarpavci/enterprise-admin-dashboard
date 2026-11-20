@@ -1,6 +1,5 @@
 import { requireAdmin } from '@/lib/auth';
 import prisma from '@/lib/prisma';
-import LogoutButton from '@/components/LogoutButton';
 import Link from 'next/link';
 import { getTodayLocal } from '@/lib/date';
 import { Metadata } from 'next';
@@ -41,8 +40,7 @@ export default async function AdminPage({
     workTrend,
     taskTrend,
     routineTrend,
-    rangeReportsCount,
-    dateFilter
+    rangeReportsCount
   } = await getAdminStats(range, startParam, endParam);
 
   // Insights Heuristics
