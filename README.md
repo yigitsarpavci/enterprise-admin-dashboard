@@ -1,5 +1,7 @@
 # Enterprise Operations & Knowledge Platform (Performo)
 
+[![CI](https://github.com/yigitsarpavci/enterprise-admin-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/yigitsarpavci/enterprise-admin-dashboard/actions/workflows/ci.yml)
+[![Security: CodeQL | Dependabot](https://img.shields.io/badge/Security-CodeQL%20%7C%20Dependabot%20%7C%20Secret%20scanning-success?logo=github)](https://github.com/yigitsarpavci/enterprise-admin-dashboard/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Next.js 16](https://img.shields.io/badge/Frontend-Next.js%2016-black?logo=next.js&logoColor=white)](#tech-stack)
 [![Express 5](https://img.shields.io/badge/Backend-Express%205-000000?logo=express&logoColor=white)](#tech-stack)
