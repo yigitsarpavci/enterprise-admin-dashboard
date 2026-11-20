@@ -56,3 +56,5 @@ CLAUDE.md
 # Local archive docs
 docs/
 coverage/
+knowledge.db
+AGENTS.md

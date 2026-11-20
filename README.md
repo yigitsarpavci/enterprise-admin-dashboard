@@ -19,8 +19,23 @@ A modern full-stack enterprise operations platform for daily activity audits, pr
 ```bash
 cp .env.example .env && npm ci
 npx prisma db push && npm run seed   # seeds admin@company.com (password: SEED_ADMIN_PASSWORD, dev default admin12345)
-npm run dev                          # http://localhost:3000
+npm run dev                          # http://localhost:3000 (Next.js + Express API)
 ```
+
+---
+
+## Screenshots
+
+Captured from a production build with seeded demo data.
+
+![Tour](docs/screenshots/tour.gif)
+
+| | |
+|---|---|
+| ![Administrative console: effort, routine discipline, trends](docs/screenshots/admin.jpg) | ![Personnel database](docs/screenshots/employees.jpg) |
+| *Administrative console: effort, routine discipline, trends* | *Personnel database* |
+| ![Knowledge base and SOP library (Express API, signed-session RBAC)](docs/screenshots/knowledge.jpg) | ![Daily reports and work logs](docs/screenshots/reports.jpg) |
+| *Knowledge base and SOP library (Express API, signed-session RBAC)* | *Daily reports and work logs* |
 
 ---
 
@@ -172,11 +187,14 @@ npm run seed
 
 ### Running the Application
 ```bash
-npm run dev
-# or for production:
+npm run dev        # unified server: Next.js + the Express API (server.ts), http://localhost:3000
+npm run dev:next   # Next.js only (the knowledge-base API is not available)
+
+# production
 npm run build
-npm start
+SESSION_SECRET="$(openssl rand -base64 32)" npm start
 ```
+`SESSION_SECRET` is required in production. The knowledge base is stored in `knowledge.db` (override with `KNOWLEDGE_DB_PATH`); tests use an in-memory database.
 
 ---
 
