@@ -1,5 +1,6 @@
 # Enterprise Operations & Knowledge Platform (Performo)
 
+[![Coverage](https://img.shields.io/badge/coverage-88%25%20API%20layer-brightgreen)](#testing--quality-assurance)
 [![CI](https://github.com/yigitsarpavci/enterprise-admin-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/yigitsarpavci/enterprise-admin-dashboard/actions/workflows/ci.yml)
 [![Security: CodeQL | Dependabot](https://img.shields.io/badge/Security-CodeQL%20%7C%20Dependabot%20%7C%20Secret%20scanning-success?logo=github)](https://github.com/yigitsarpavci/enterprise-admin-dashboard/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -131,7 +132,7 @@ The test runner executes:
 2. **Controller Unit Tests** (`tests/views/knowledge.controller.test.ts`) — Tests controller request-response lifecycles, error propagation, and filtering.
 3. **Frontend Component Tests** (`tests/frontend/knowledge.frontend.test.tsx`) — Tests dynamic search, loading skeletons, and empty states using React Testing Library.
 
-`npm run lint` and `npm run build` also run in CI (GitHub Actions) on every push.
+`npm run test:coverage` measures the Express API layer (`src/server`, currently 88% of statements, enforced at 80% in CI). `npm run lint` and `npm run build` also run in CI (GitHub Actions) on every push.
 
 ---
 

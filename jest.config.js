@@ -5,6 +5,8 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  collectCoverageFrom: ['src/server/**/*.ts', '!src/server/app.ts'],
+  coverageThreshold: { global: { statements: 80, lines: 80, functions: 75, branches: 60 } },
   // jose ships ESM only; let ts-jest transpile it to CommonJS for the tests.
   transformIgnorePatterns: ['/node_modules/(?!jose/)'],
   transform: {

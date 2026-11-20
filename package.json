@@ -8,7 +8,8 @@
     "start": "./node_modules/.bin/next start",
     "lint": "./node_modules/.bin/eslint",
     "test": "./node_modules/.bin/jest",
-    "seed": "./node_modules/.bin/prisma db seed"
+    "seed": "./node_modules/.bin/prisma db seed",
+    "test:coverage": "./node_modules/.bin/jest --coverage"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
