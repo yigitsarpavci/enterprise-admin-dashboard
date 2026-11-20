@@ -54,7 +54,8 @@ AGENTS.md
 CLAUDE.md
 
 # Local archive docs
-docs/
+docs/*
+!docs/screenshots/
 coverage/
 knowledge.db
 AGENTS.md
