@@ -14,6 +14,16 @@ A modern full-stack enterprise operations platform for daily activity audits, pr
 
 ---
 
+## Quick Start
+
+```bash
+cp .env.example .env && npm ci
+npx prisma db push && npm run seed   # seeds admin@company.com (password: SEED_ADMIN_PASSWORD, dev default admin12345)
+npm run dev                          # http://localhost:3000
+```
+
+---
+
 ## Tech Stack
 
 ### Frontend & UI
